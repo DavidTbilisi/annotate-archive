@@ -1,0 +1,12 @@
+CRITICAL - 2021-05-20 14:03:26 --> Undefined constant "page_title"
+#0 /var/www/annotate.local/system/View/View.php(230): include()
+#1 /var/www/annotate.local/system/View/View.php(232): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+#2 /var/www/annotate.local/system/View/View.php(246): CodeIgniter\View\View->render()
+#3 /var/www/annotate.local/system/Common.php(1250): CodeIgniter\View\View->render()
+#4 /var/www/annotate.local/app/Controllers/Home.php(15): view()
+#5 /var/www/annotate.local/system/CodeIgniter.php(931): App\Controllers\Home->index()
+#6 /var/www/annotate.local/system/CodeIgniter.php(439): CodeIgniter\CodeIgniter->runController()
+#7 /var/www/annotate.local/system/CodeIgniter.php(339): CodeIgniter\CodeIgniter->handleRequest()
+#8 /var/www/annotate.local/public/index.php(36): CodeIgniter\CodeIgniter->run()
+#9 /var/www/annotate.local/system/Commands/Server/rewrite.php(45): require_once('...')
+#10 {main}
