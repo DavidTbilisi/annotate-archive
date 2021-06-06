@@ -15,5 +15,5 @@
 - `php spark db:seed Users`
 
 
-default user: `admin@a.ge`
+default user: `admin@a.ge`\
 default pass: `12345`
