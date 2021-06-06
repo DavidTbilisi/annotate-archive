@@ -9,7 +9,7 @@
 - [QR Code max character length](https://stackoverflow.com/questions/12764334/qr-code-max-char-length)
 
 
-## Installing db
+## Installing User Management
 - `php spark migrate` to create tables and structures
 - `php spark db:seed Usergroups`
 - `php spark db:seed Users`
@@ -17,3 +17,10 @@
 
 default user: `a@admin.com`\
 default pass: `12345`
+
+
+## User Management Service
+```PHP
+$auth = service('userAuth');
+d($auth->check([1])); // Group ID
+```
