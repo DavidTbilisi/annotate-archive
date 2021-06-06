@@ -7,3 +7,9 @@
 ---
 ## Issues
 - [QR Code max character length](https://stackoverflow.com/questions/12764334/qr-code-max-char-length)
+
+
+## Installing db
+- `php spark migrate` to create tables and structures
+- `php spark db:seed Usergroups`
+- `php spark db:seed Users`
