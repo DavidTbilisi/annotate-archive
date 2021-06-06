@@ -13,3 +13,7 @@
 - `php spark migrate` to create tables and structures
 - `php spark db:seed Usergroups`
 - `php spark db:seed Users`
+
+
+default user: `admin@a.ge`
+default pass: `12345`
