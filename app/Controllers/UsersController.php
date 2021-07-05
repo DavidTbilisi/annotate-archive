@@ -22,8 +22,8 @@ class UsersController extends BaseController
         // Eamil config
         $this->email = \Config\Services::email();
         $this->email->initialize([
-            'SMTPHost' => 'mail.something.ge',
-            'SMTPUser' => 'info@something.ge',
+            'SMTPHost' => 'mail.lang.ge',
+            'SMTPUser' => 'info@lang.ge',
             'SMTPPass' => 'test',
             'SMTPPort' => '587',
             'mailType' => 'html',
@@ -60,7 +60,7 @@ class UsersController extends BaseController
             'activated' => 1
         ]);
         
-        $this->session->setFlashdata('success', 'Yur accout is activated successfully');
+        $this->session->setFlashdata('success', 'Your accout is activated successfully');
         
         return redirect()->to(base_url('users/login'));
         
@@ -176,7 +176,7 @@ class UsersController extends BaseController
             $this->email->setFrom(base_url(), ' - textile company');
             $this->email->setTo($this->request->getPost('email'));
             $this->email->setSubject('Validate user account');
-            $this->email->setMessage('<a href="'.base_url('users/activation/?vkey='.$activationKey.'').'">Account activateion on '. base_url().'. Follow the link for activation. </a>');
+            $this->email->setMessage('<a href="'.base_url('users/activation?vkey='.$activationKey.'').'">Account activateion on '. base_url().'. Follow the link for activation. </a>');
             $this->email->send();
             
             // Store data in to the database
