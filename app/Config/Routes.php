@@ -22,7 +22,7 @@ $routes->setDefaultController('Home');
 $routes->setDefaultMethod('index');
 $routes->setTranslateURIDashes(false);
 $routes->set404Override();
-$routes->setAutoRoute(true);
+$routes->setAutoRoute(false);
 
 /*
  * --------------------------------------------------------------------
@@ -33,6 +33,34 @@ $routes->setAutoRoute(true);
 // We get a performance increase by specifying the default
 // route since we don't have to scan directories.
 $routes->get('/', 'Home::index');
+
+
+
+// Users
+$routes->get('logout', 'UsersController::logout');
+$routes->group('users', function($routes) {
+    $routes->get('/', 'UsersController::index');
+    
+    $routes->get('login', 'UsersController::loginView', ['filter' => 'AuthFilter']);
+    $routes->post('login', 'UsersController::login', ['filter' => 'AuthFilter']);
+    
+    $routes->get('register', 'UsersController::registerView', ['filter' => 'AuthFilter']);
+    $routes->post('register', 'UsersController::register', ['filter' => 'AuthFilter']);
+    
+    $routes->post('reset', 'UsersController::reset', ['filter' => 'AuthFilter']);
+    $routes->get('reset', 'UsersController::reset', ['filter' => 'AuthFilter']);
+    
+    $routes->get('profile/(:num)', 'UsersController::profile/$1');
+    $routes->get('account/(:num)', 'UsersController::accountView/$1', ['filter' => 'NoAuthFilter']);
+    $routes->put('account/(:num)', 'UsersController::account/$1', ['filter' => 'NoAuthFilter']);
+    
+    $routes->get('logout', 'UsersController::logout');
+
+    $routes->get('activation', 'UsersController::activation', ['filter' => 'AuthFilter']);
+
+    
+});
+
 
 /*
  * --------------------------------------------------------------------

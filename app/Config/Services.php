@@ -28,4 +28,13 @@ class Services extends BaseService
 	//
 	//     return new \CodeIgniter\Example();
 	// }
+
+	// Check user
+    public static function userAuth($privilegies = [], $getShared = true)
+    {
+        if ($getShared) 
+            return static::getSharedInstance('userAuth', $privilegies);
+
+        return new \App\Libraries\UsersLibrary($privilegies);
+    }
 }
