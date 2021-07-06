@@ -8,13 +8,12 @@ class Users extends Seeder
 {
 	public function run()
 	{
-        $password = session()->getFlashdata('default_password');
 		$this->db->table('users')->insert([
-			'name' => 'Admin',
-			'username' => 'admin',
+			'name' => 'Alter',
+			'username' => 'alter-180',
 			'activated' => 1,
-			'email' => 'a@admin.com',
-			'password' => password_hash("111", PASSWORD_DEFAULT),
+			'email' => 'alter@mail.com',
+			'password' => password_hash('alter1349', PASSWORD_DEFAULT),
 			'groups_id ' => 1
 		]);
 	}

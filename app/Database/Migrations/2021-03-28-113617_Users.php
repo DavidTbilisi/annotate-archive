@@ -53,13 +53,11 @@ class Users extends Migration
             ],
             'created_at' => [
                 'type' => 'DATETIME',
-                "default"=>"CURRENT_TIMESTAMP",
-
+                'null' => true
             ],
             'updated_at' => [
                 'type' => 'DATETIME',
-                "default"=>"CURRENT_TIMESTAMP",
-
+                'null' => true
             ]
         ]);
         $this->forge->addKey('id', true);

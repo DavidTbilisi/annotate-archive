@@ -21,15 +21,15 @@ class Groups extends Migration
             ],
             'group_description' => [
                 'type' => 'TEXT',
-                'null' => true,
+                'null' => true
             ],
             'created_at' => [
                 'type' => 'DATETIME',
-                "default"=>"CURRENT_TIMESTAMP",
+                'null' => true
             ],
             'updated_at' => [
                 'type' => 'DATETIME',
-                "default"=>"CURRENT_TIMESTAMP",
+                'null' => true
             ]
         ]);
         $this->forge->addKey('group_id', true);

@@ -1,0 +1,16 @@
+CRITICAL - 2021-06-03 14:26:34 --> Invalid file: &lt;?= $this->extend('base_view') ?&gt;
+&lt;?= $this->section('content') ?&gt;
+<div class="uk-container uk-section">
+    <h1>Hello World!</h1>
+    
+</div>
+
+&lt;?= $this->endSection() ?&gt;.php
+#0 /var/www/annotate.local/system/View/View.php(213): CodeIgniter\Exceptions\FrameworkException::forInvalidFile()
+#1 /var/www/annotate.local/system/Common.php(1250): CodeIgniter\View\View->render()
+#2 /var/www/annotate.local/app/Controllers/Home.php(17): view()
+#3 /var/www/annotate.local/system/CodeIgniter.php(931): App\Controllers\Home->index()
+#4 /var/www/annotate.local/system/CodeIgniter.php(439): CodeIgniter\CodeIgniter->runController()
+#5 /var/www/annotate.local/system/CodeIgniter.php(339): CodeIgniter\CodeIgniter->handleRequest()
+#6 /var/www/annotate.local/public/index.php(36): CodeIgniter\CodeIgniter->run()
+#7 {main}

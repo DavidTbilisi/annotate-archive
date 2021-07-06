@@ -1,8 +1,21 @@
-<?= $this->extend('base_view.php'); ?>
-<?= $this->section('title') ?>User profile<?= $this->endSection(); ?>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <!-- UIkit CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/uikit@3.6.22/dist/css/uikit.min.css" />
 
-
-<?= $this->section('content'); ?>
+    <!-- UIkit JS -->
+    <script src="https://cdn.jsdelivr.net/npm/uikit@3.6.22/dist/js/uikit.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/uikit@3.6.22/dist/js/uikit-icons.min.js"></script>
+        
+    <title>Account</title>
+</head>
+<body>
+    
 <section class="uk-section uk-padding-remove-top">
     
     <div id="alter-profile-banner" class="uk-background-secondary uk-height-medium uk-overflow-hidden">
@@ -27,7 +40,6 @@
                     <div>
                         <a uk-tooltip="Edit profile" class="uk-button uk-button-group uk-button-default uk-padding-small uk-button-small uk-margin-remove" href="<?= base_url("users/account/" . session()->get('userid')) ?>" uk-icon="icon: pencil; ratio: .8;"></a>
                         <a uk-tooltip="Logout" class="uk-button uk-button-group uk-button-default uk-padding-small uk-button-small uk-margin-remove" href="<?= base_url("users/logout") ?>" uk-icon="icon: sign-out; ratio: .8;"></a>
-                        <!-- <a uk-tooltip="Disable profile" class="uk-button uk-button-group uk-button-default uk-padding-small uk-button-small uk-margin-remove" href="#" uk-icon="icon: trash; ratio: .8;"></a> -->
                     </div>
                 </div>
                 <?php endif; ?>
@@ -56,4 +68,6 @@
         
     </div>
 </section>
-<?= $this->endSection(); ?>
+
+</body>
+</html>
