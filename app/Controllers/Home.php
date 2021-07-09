@@ -8,11 +8,14 @@ class Home extends BaseController
 	{
 		// var_dump($_ENV);
 
-
-		$parser = \Config\Services::parser();
 		$data = [
 			'page_title' => 'Your title'
 		];
 		return view('home', $data);
 	}
+
+
+	public function test() {
+	    return "Test passed";
+    }
 }
