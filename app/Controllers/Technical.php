@@ -9,6 +9,6 @@ class Technical extends BaseController
 		$data = [
 			'page_title' => 'Technical Separation Sheet'
 		];
-		return view('book_separation/index', $data);
+		return view('technical/index', $data);
 	}
 }

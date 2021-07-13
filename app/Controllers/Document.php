@@ -9,6 +9,6 @@ class Document extends BaseController
 		$data = [
 			'page_title' => 'Document Annotation Sheet'
 		];
-		return view('book_separation/index', $data);
+		return view('document/index', $data);
 	}
 }

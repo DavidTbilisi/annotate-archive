@@ -35,6 +35,7 @@ $routes->setAutoRoute(true);
 $routes->get('/', 'Home::index');
 $routes->add('home/test', 'Home::test');
 $routes->add('book', 'Book::index');
+$routes->add('config', 'Config::index');
 
 
 

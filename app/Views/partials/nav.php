@@ -37,7 +37,9 @@
     <div class="uk-navbar-right">
 
         <ul class="uk-navbar-nav">
-            <li><a href="#"  uk-icon="icon: cog"></a></li>
+            <li><a href="<?=base_url('config')?>"  uk-icon="icon: cog"></a></li>
+
+
             <li>
                 <a href="#"  uk-icon="icon: user"></a>
                 <div class="uk-navbar-dropdown">
