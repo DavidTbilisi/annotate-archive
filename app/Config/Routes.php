@@ -60,8 +60,6 @@ $routes->group('users', function($routes) {
     $routes->get('logout', 'UsersController::logout');
 
     $routes->get('activation', 'UsersController::activation', ['filter' => 'AuthFilter']);
-
-    
 });
 
 

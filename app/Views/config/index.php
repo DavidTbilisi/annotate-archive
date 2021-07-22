@@ -19,12 +19,22 @@
                 <label><input class="uk-checkbox" type="checkbox" checked> A</label> <br>
                 <label><input class="uk-checkbox" type="checkbox" checked> A</label> <br>
                 <label><input class="uk-checkbox" type="checkbox" checked> A</label> <br>
+                <div class="uk-margin uk-flex uk-space-between">
+                    <button class="uk-button uk-button-primary">add</button>
+                    <input type="text" class="uk-input" name="nominal" placeholder="nominal">
+                </div>
+
             </li>
 
             <li id="institutions">
                 <label><input class="uk-checkbox" type="checkbox" checked> A</label> <br>
                 <label><input class="uk-checkbox" type="checkbox" checked> A</label> <br>
                 <label><input class="uk-checkbox" type="checkbox" checked> A</label> <br>
+                <div class="uk-margin uk-flex uk-space-between">
+                    <button class="uk-button uk-button-primary">add</button>
+                    <input type="text" class="uk-input" name="institutions" placeholder="institutions">
+                </div>
+
             </li>
 
             <li id="connection">
@@ -32,6 +42,11 @@
                 <label><input class="uk-checkbox" type="checkbox" checked> A</label> <br>
                 <label><input class="uk-checkbox" type="checkbox" checked> A</label> <br>
                 <label><input class="uk-checkbox" type="checkbox" checked> A</label> <br>
+                <div class="uk-margin uk-flex uk-space-between">
+                    <button class="uk-button uk-button-primary">add</button>
+                    <input type="text" class="uk-input" name="connection" placeholder="connection">
+                </div>
+
             </li>
         </ul>
     </div>
