@@ -9,6 +9,8 @@ class Book extends BaseController
 		$data = [
 			'page_title' => 'Book Separation Sheet'
 		];
+        $db = \Config\Database::connect();
+        dd($db);
 		return view('book_separation/index', $data);
 	}
 }

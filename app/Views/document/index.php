@@ -7,7 +7,7 @@
 
         <div class="uk-margin">
             <label for="doc_number">დოკუმენტის ნომერი</label>
-            <input class="uk-input" type="number" id="doc_number">
+            <input class="uk-input" type="text" id="doc_number">
         </div>
 
         <div class="uk-margin">

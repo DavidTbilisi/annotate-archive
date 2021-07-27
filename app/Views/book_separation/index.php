@@ -104,7 +104,7 @@ function checkbox($data = '', string $value = '', bool $checked = false, $extra 
                         </div>
 
                         <div class="uk-text-right">
-                            <button class="uk-button uk-button-primary uk-display-inline">შენახვა</button>
+                            <button class="uk-button uk-button-primary uk-display-inline">დამატება</button>
                         </div>
 
                         <hr class="uk-divider-icon">
@@ -129,7 +129,10 @@ function checkbox($data = '', string $value = '', bool $checked = false, $extra 
                                 <td><?= $item ?> პრეფიქსი</td>
                                 <td><?= random_int(1, 999) ?></td>
                                 <td><?= $item ?> სუფიქსი</td>
-                                <td class="uk-text-center"><a class="uk-text-danger" title="წაშლა" href="" uk-icon="icon: trash"></a></td>
+                                <td class="uk-text-center">
+                                    <a class="uk-text-danger" title="რედაქტირება" href="" uk-icon="icon: copy"></a>
+                                    <a class="uk-text-danger" title="წაშლა" href="" uk-icon="icon: trash"></a>
+                                </td>
                             </tr>
                         <?php endforeach; ?>
                         </tbody>
@@ -139,10 +142,10 @@ function checkbox($data = '', string $value = '', bool $checked = false, $extra 
                 </div>
             </div>
             <div class="uk-width-2-5@m ">
-                <div class="buttons uk-flex uk-flex-around uk-padding">
-                    <div class="uk-button uk-button-danger">გაუქმება</div>
-                    <div class="uk-button uk-button-primary">შენახვა</div>
-                </div>
+<!--                <div class="buttons uk-flex uk-flex-around uk-padding">-->
+<!--                    <div class="uk-button uk-button-danger">გაუქმება</div>-->
+<!--                    <div class="uk-button uk-button-primary">შენახვა</div>-->
+<!--                </div>-->
 
                 <div class="dates">
                     <div class="uk-flex uk-flex-between">
