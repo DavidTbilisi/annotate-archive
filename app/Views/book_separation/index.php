@@ -52,7 +52,7 @@ function checkbox($data = '', string $value = '', bool $checked = false, $extra 
                     <form class="uk-form-stacked">
 
                         <div class="uk-margin">
-                            <label class="uk-form-label" for="form-stacked-text">Name Of Work</label>
+                            <label class="uk-form-label" for="form-stacked-text">სახელი</label>
                             <div class="uk-form-controls">
                                 <input class="uk-input" id="form-stacked-text" type="text" placeholder="Some text...">
                             </div>
@@ -129,7 +129,7 @@ function checkbox($data = '', string $value = '', bool $checked = false, $extra 
                                 <td><?= $item ?> პრეფიქსი</td>
                                 <td><?= random_int(1, 999) ?></td>
                                 <td><?= $item ?> სუფიქსი</td>
-                                <td class="uk-text-center">
+                                <td class="uk-text-center uk-flex uk-flex-around">
                                     <a class="uk-text-danger" title="რედაქტირება" href="" uk-icon="icon: copy"></a>
                                     <a class="uk-text-danger" title="წაშლა" href="" uk-icon="icon: trash"></a>
                                 </td>
@@ -209,9 +209,9 @@ function checkbox($data = '', string $value = '', bool $checked = false, $extra 
 
                 <div class="nominals" style="margin-top: 50px">
                     <h1 class="uk-text-center">ნომინალები</h1>
-                    <?php foreach (range(1, 7) as $checkbox): ?>
+                    <?php foreach ( $nominals as $checkbox): ?>
                         <div class="uk-margin">
-                            <?= checkbox('one' . $checkbox, 'One' . $checkbox, true) ?>
+                            <?= checkbox($checkbox->title, $checkbox->title) ?>
                         </div>
                     <?php endforeach; ?>
 
@@ -223,9 +223,9 @@ function checkbox($data = '', string $value = '', bool $checked = false, $extra 
     <script>
 
         $(document).ready(function () {
-            $('#example').DataTable({
-                ordering: true
-            });
+            // $('#example').DataTable({
+            //     ordering: true
+            // });
         });
 
     </script>

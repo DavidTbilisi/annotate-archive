@@ -28,6 +28,7 @@ class BaseController extends Controller
 	 * @var IncomingRequest|CLIRequest
 	 */
 	protected $request;
+	protected $db;
 
 	/**
 	 * An array of helpers to be loaded automatically upon
@@ -49,7 +50,7 @@ class BaseController extends Controller
 	{
 		// Do Not Edit This Line
 		parent::initController($request, $response, $logger);
-
+        $this->db = \Config\Database::connect();
 		//--------------------------------------------------------------------
 		// Preload any models, libraries, etc, here.
 		//--------------------------------------------------------------------

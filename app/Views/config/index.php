@@ -13,39 +13,44 @@
 
         <ul class="uk-switcher uk-margin">
             <li id="nominal">
-                <label><input class="uk-checkbox" type="checkbox" checked> A</label> <br>
-                <label><input class="uk-checkbox" type="checkbox" checked> A</label> <br>
-                <label><input class="uk-checkbox" type="checkbox" checked> A</label> <br>
-                <label><input class="uk-checkbox" type="checkbox" checked> A</label> <br>
-                <label><input class="uk-checkbox" type="checkbox" checked> A</label> <br>
-                <label><input class="uk-checkbox" type="checkbox" checked> A</label> <br>
+                <?php foreach($nominals as $nominal): ?>
+                <label><input class="uk-checkbox" type="checkbox" checked> <?= $nominal->title?></label> <br>
+                <?php endforeach; ?>
+                <form action="<?=base_url('config/add_nominal')?>" method="POST">
                 <div class="uk-margin uk-flex uk-space-between">
                     <button class="uk-button uk-button-primary">add</button>
                     <input type="text" class="uk-input" name="nominal" placeholder="nominal">
                 </div>
+                </form>
 
             </li>
 
             <li id="institutions">
-                <label><input class="uk-checkbox" type="checkbox" checked> A</label> <br>
-                <label><input class="uk-checkbox" type="checkbox" checked> A</label> <br>
-                <label><input class="uk-checkbox" type="checkbox" checked> A</label> <br>
+                <?php foreach($institutions as $inst): ?>
+                <label><input class="uk-checkbox" type="checkbox" checked> <?=$inst->title?></label> <br>
+                <?php endforeach; ?>
+
+                <form action="<?=base_url('config/add_institution')?>" method="POST">
                 <div class="uk-margin uk-flex uk-space-between">
                     <button class="uk-button uk-button-primary">add</button>
                     <input type="text" class="uk-input" name="institutions" placeholder="institutions">
                 </div>
+                </form>
+
 
             </li>
 
             <li id="connection">
-                <label><input class="uk-checkbox" type="checkbox" checked> A</label> <br>
-                <label><input class="uk-checkbox" type="checkbox" checked> A</label> <br>
-                <label><input class="uk-checkbox" type="checkbox" checked> A</label> <br>
-                <label><input class="uk-checkbox" type="checkbox" checked> A</label> <br>
+                <?php foreach($connections as $connection): ?>
+                    <label><input class="uk-checkbox" type="checkbox" checked> <?=$connection->title?></label> <br>
+                <?php endforeach; ?>
+
+                <form action="<?=base_url('config/add_connection')?>" method="POST">
                 <div class="uk-margin uk-flex uk-space-between">
                     <button class="uk-button uk-button-primary">add</button>
                     <input type="text" class="uk-input" name="connection" placeholder="connection">
                 </div>
+                </form>
 
             </li>
         </ul>
