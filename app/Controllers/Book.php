@@ -14,4 +14,10 @@ class Book extends BaseController
 
 		return view('book_separation/index', $data);
 	}
+
+
+    public function to_yaml()
+    {
+        yaml_emit_file(WRITEPATH.'/test_yaml.yml', ["name"=>"David"]);
+	}
 }

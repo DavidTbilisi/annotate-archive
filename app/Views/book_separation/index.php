@@ -54,7 +54,7 @@ function checkbox($data = '', string $value = '', bool $checked = false, $extra 
                         <div class="uk-margin">
                             <label class="uk-form-label" for="form-stacked-text">სახელი</label>
                             <div class="uk-form-controls">
-                                <input class="uk-input" id="form-stacked-text" type="text" placeholder="Some text...">
+                                <input name="name" class="uk-input" id="form-stacked-text" type="text" placeholder="Some text...">
                             </div>
                         </div>
 
@@ -66,7 +66,7 @@ function checkbox($data = '', string $value = '', bool $checked = false, $extra 
                                 <div class="uk-margin">
                                     <label class="uk-form-label" for="form-stacked-text1">დონე</label>
                                     <div class="uk-form-controls">
-                                        <input class="uk-input" id="form-stacked-text1" type="text"
+                                        <input name="level" class="uk-input" id="form-stacked-text1" type="text"
                                                placeholder="Some text...">
                                     </div>
                                 </div>
@@ -74,9 +74,9 @@ function checkbox($data = '', string $value = '', bool $checked = false, $extra 
 
                             <div>
                                 <div class="uk-margin">
-                                    <label class="uk-form-label" for="form-stacked-text2">პრეფიქსი</label>
+                                    <label class="uk-form-label" for="form-stacked-text2"><span uk-icon="icon: arrow-left"></span> პრეფიქსი</label>
                                     <div class="uk-form-controls">
-                                        <input class="uk-input" id="form-stacked-text2" type="text"
+                                        <input name="prefix" class="uk-input" id="form-stacked-text2" type="text"
                                                placeholder="Some text...">
                                     </div>
                                 </div>
@@ -84,18 +84,18 @@ function checkbox($data = '', string $value = '', bool $checked = false, $extra 
 
                             <div>
                                 <div class="uk-margin">
-                                    <label class="uk-form-label" for="form-stacked-text3">ნომერი</label>
+                                    <label class="uk-form-label" for="form-stacked-text3"><span uk-icon="icon: hashtag"></span>ნომერი</label>
                                     <div class="uk-form-controls">
-                                        <input class="uk-input" id="form-stacked-text3" type="text"
+                                        <input name="number" class="uk-input" id="form-stacked-text3" type="text"
                                                placeholder="Some text...">
                                     </div>
                                 </div>
                             </div>
                             <div>
                                 <div class="uk-margin">
-                                    <label class="uk-form-label" for="form-stacked-text4">სუფიქსი</label>
+                                    <label class="uk-form-label" for="form-stacked-text4">სუფიქსი<span uk-icon="icon: arrow-right"></span> </label>
                                     <div class="uk-form-controls">
-                                        <input class="uk-input" id="form-stacked-text4" type="text"
+                                        <input name="sufix" class="uk-input" id="form-stacked-text4" type="text"
                                                placeholder="Some text...">
                                     </div>
                                 </div>
@@ -214,7 +214,6 @@ function checkbox($data = '', string $value = '', bool $checked = false, $extra 
                             <?= checkbox($checkbox->title, $checkbox->title) ?>
                         </div>
                     <?php endforeach; ?>
-
                 </div>
             </div>
         </div>
@@ -222,6 +221,13 @@ function checkbox($data = '', string $value = '', bool $checked = false, $extra 
     </div>
     <script>
 
+        let print = $('#print');
+
+        console.log(print);
+
+        print.on("click", function () {
+            console.log($("[name]"))
+        })
         $(document).ready(function () {
             // $('#example').DataTable({
             //     ordering: true
