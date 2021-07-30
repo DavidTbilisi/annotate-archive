@@ -1,9 +1,10 @@
 <?php
 
 namespace App\Controllers;
-
+use CodeIgniter\API\ResponseTrait;
 class Book extends BaseController
 {
+    use ResponseTrait;
 	public function index()
 	{
 		$data = [
@@ -18,6 +19,13 @@ class Book extends BaseController
 
     public function to_yaml()
     {
-        yaml_emit_file(WRITEPATH.'/test_yaml.yml', ["name"=>"David"]);
+
+        $post_data = $this->request->getPost();
+
+        $is_written = yaml_emit_file(WRITEPATH.'/test_yaml.yml', $post_data, YAML_UTF8_ENCODING);
+        if ($is_written){
+            return $this->respondCreated('File was written');
+            die;
+        }
 	}
 }

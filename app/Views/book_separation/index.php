@@ -43,7 +43,7 @@ function checkbox($data = '', string $value = '', bool $checked = false, $extra 
 
     </style>
 
-
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
     <div class="uk-container uk-container-xlarge uk-section" id="book-separation">
 
         <div uk-grid>
@@ -150,12 +150,12 @@ function checkbox($data = '', string $value = '', bool $checked = false, $extra 
                 <div class="dates">
                     <div class="uk-flex uk-flex-between">
                         <div>
-                            <label for="start_day">საწყისი დღე</label>
-                            <input name="start_day" class="uk-input" id="start_day" type="number" min="1" max="31">
+                            <label for="start_day_date">საწყისი დღე</label>
+                            <input name="start_day_date" class="uk-input" id="start_day_date" type="number" min="1" max="31">
                         </div>
                         <div>
-                            <label for="start_month">საწყისი თვე</label>
-                            <select name="start_month" class="uk-select" id="start_month">
+                            <label for="start_month_date">საწყისი თვე</label>
+                            <select name="start_month_date" class="uk-select" id="start_month_date">
                                 <option value="">აირჩიე თვე</option>
                                 <option value="1">იანვარი</option>
                                 <option value="2">თებერვალი</option>
@@ -172,18 +172,18 @@ function checkbox($data = '', string $value = '', bool $checked = false, $extra 
                             </select>
                         </div>
                         <div>
-                            <label for="start_year">საწყისი წელი</label>
-                            <input name="start_year" class="uk-input" id="start_year" type="number" min="1000" max="9999">
+                            <label for="start_year_date">საწყისი წელი</label>
+                            <input name="start_year_date" class="uk-input" id="start_year_date" type="number" min="1000" max="9999">
                         </div>
                     </div>
                     <div class="uk-flex uk-flex-between" style="margin-top: 40px">
                         <div>
-                            <label for="start_day">საბოლოო დღე</label>
-                            <input name="start_day" class="uk-input" id="start_day" type="number" min="1" max="31">
+                            <label for="end_day_date">საბოლოო დღე</label>
+                            <input name="end_day_date" class="uk-input" id="end_day_date" type="number" min="1" max="31">
                         </div>
                         <div>
-                            <label for="start_month">საბოლოო თვე</label>
-                            <select name="start_month" class="uk-select" id="start_month">
+                            <label for="end_month_date">საბოლოო თვე</label>
+                            <select name="end_month_date" class="uk-select" id="end_month_date">
                                 <option value="">აირჩიე თვე</option>
                                 <option value="1">იანვარი</option>
                                 <option value="2">თებერვალი</option>
@@ -200,8 +200,8 @@ function checkbox($data = '', string $value = '', bool $checked = false, $extra 
                             </select>
                         </div>
                         <div>
-                            <label for="start_year">საბოლოო წელი</label>
-                            <input name="start_year" class="uk-input" id="start_year" type="number" min="1000" max="9999">
+                            <label for="end_year_date">საბოლოო წელი</label>
+                            <input name="end_year_date" class="uk-input" id="end_year_date" type="number" min="1000" max="9999">
                         </div>
                     </div>
 
@@ -223,16 +223,58 @@ function checkbox($data = '', string $value = '', bool $checked = false, $extra 
 
         let print = $('#print');
 
-        console.log(print);
 
         print.on("click", function () {
-            console.log($("[name]"))
+            var data = new FormData();
+
+            let sd = document.querySelector('[name^=start_day]').value;
+            let sm = document.querySelector('[name^=start_month]').value;
+            let sy = document.querySelector('[name^=start_year]').value;
+            let ed = document.querySelector('[name^=end_day]').value;
+            let em = document.querySelector('[name^=end_month]').value;
+            let ey = document.querySelector('[name^=end_year]').value;
+            let nominal = ""
+            document.querySelectorAll('input[name]:checked').forEach(function(e){
+                nominal += e.value+","
+            })
+            nominal = nominal.slice(0,-1);
+
+            let dates = `${sd}/${sm}/${sy}-${ed}/${em}/${ey}`
+
+          data.append('start-end-dates',dates);
+          data.append('nominals',nominal);
+          data.append('levels',$("#example tbody tr").serialize());
+          data.append('name',$('input[name=name]').val());
+            console.log(data)
+
+            axios({
+                method:"post",
+                headers:{
+                    'Content-Type':'multipart/form-data'
+                },
+                url:"<?=base_url('book/to_yaml')?>",
+                data:data
+            }).then(data=>alert(data.data))
+            //
+            //$.ajax({
+            //    method:"post",
+            //    url:"<?//=base_url('book/to_yaml')?>//",
+            //    data: data,
+            //    contentType: "application/x-www-form-urlencoded;charset=ISO-8859-15",
+            //    success:function (resp) {
+            //        alert(resp);
+            //    }
+            //})
         })
-        $(document).ready(function () {
+
+
+
+
+        // $(document).ready(function () {
             // $('#example').DataTable({
             //     ordering: true
             // });
-        });
+        // });
 
     </script>
 <?= $this->endSection() ?>
