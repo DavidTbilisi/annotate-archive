@@ -2,6 +2,8 @@
 
 namespace App\Controllers;
 use CodeIgniter\API\ResponseTrait;
+use App\Libraries\Qrcodegen;
+
 class Book extends BaseController
 {
     use ResponseTrait;
@@ -28,4 +30,9 @@ class Book extends BaseController
             die;
         }
 	}
+
+
+	public function test() {
+	    echo 1;
+    }
 }

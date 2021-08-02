@@ -62,7 +62,9 @@ class Autoload extends AutoloadConfig
 	 *```
 	 * @var array<string, string>
 	 */
-	public $classmap = [];
+	public $classmap = [
+        'Qrcode' => APPPATH . 'ThirdParty/phpqrcode/qrlib.php'
+    ];
 
 	/**
 	 * -------------------------------------------------------------------
