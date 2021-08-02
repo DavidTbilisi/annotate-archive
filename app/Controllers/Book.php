@@ -24,7 +24,7 @@ class Book extends BaseController
 
         $is_written = yaml_emit_file(WRITEPATH.'/test_yaml.yml', $post_data, YAML_UTF8_ENCODING);
         if ($is_written){
-            return $this->respondCreated('File was written');
+            return $this->respondCreated(["message"=>'File was written']);
             die;
         }
 	}

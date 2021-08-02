@@ -49,7 +49,9 @@ function checkbox($data = '', string $value = '', bool $checked = false, $extra 
         <div uk-grid>
             <div class="uk-width-3-5@m uk-padding">
                 <div class="uk-card">
-                    <form class="uk-form-stacked">
+                    <div class="uk-form-stacked">
+
+                        <span id="print" uk-icon="icon: print" class="uk-icon-button uk-margin-small-right"></span>
 
                         <div class="uk-margin">
                             <label class="uk-form-label" for="form-stacked-text">სახელი</label>
@@ -58,7 +60,6 @@ function checkbox($data = '', string $value = '', bool $checked = false, $extra 
                             </div>
                         </div>
 
-                        <span id="print" uk-icon="icon: print" class="uk-icon-button uk-margin-small-right"></span>
 
                         <div class="uk-flex uk-flex-between uk-child-width-expand">
 
@@ -104,12 +105,12 @@ function checkbox($data = '', string $value = '', bool $checked = false, $extra 
                         </div>
 
                         <div class="uk-text-right">
-                            <button class="uk-button uk-button-primary uk-display-inline">დამატება</button>
+                            <button class="uk-button uk-button-primary uk-display-inline" id="add">დამატება</button>
                         </div>
 
                         <hr class="uk-divider-icon">
 
-                    </form>
+                    </div>
 
 
                     <table class="uk-table display" id="example" style="width:100%">
@@ -123,18 +124,7 @@ function checkbox($data = '', string $value = '', bool $checked = false, $extra 
                         </tr>
                         </thead>
                         <tbody>
-                        <?php foreach (range(1, 5) as $item): ?>
-                            <tr>
-                                <td><?= $item ?> დონე</td>
-                                <td><?= $item ?> პრეფიქსი</td>
-                                <td><?= random_int(1, 999) ?></td>
-                                <td><?= $item ?> სუფიქსი</td>
-                                <td class="uk-text-center uk-flex uk-flex-around">
-                                    <a class="uk-text-danger" title="რედაქტირება" href="" uk-icon="icon: copy"></a>
-                                    <a class="uk-text-danger" title="წაშლა" href="" uk-icon="icon: trash"></a>
-                                </td>
-                            </tr>
-                        <?php endforeach; ?>
+
                         </tbody>
                     </table>
 
@@ -227,24 +217,35 @@ function checkbox($data = '', string $value = '', bool $checked = false, $extra 
         print.on("click", function () {
             var data = new FormData();
 
-            let sd = document.querySelector('[name^=start_day]').value;
-            let sm = document.querySelector('[name^=start_month]').value;
-            let sy = document.querySelector('[name^=start_year]').value;
-            let ed = document.querySelector('[name^=end_day]').value;
-            let em = document.querySelector('[name^=end_month]').value;
-            let ey = document.querySelector('[name^=end_year]').value;
-            let nominal = ""
+            function val(selector) {
+                return document.querySelector(selector).value
+            }
+
+            let sd = val('[name^=start_day]');
+            let sm = val('[name^=start_month]');
+            let sy = val('[name^=start_year]');
+            let ed = val('[name^=end_day]');
+            let em = val('[name^=end_month]');
+            let ey = val('[name^=end_year]');
+
+            let nominal = [], levels = [];
+
             document.querySelectorAll('input[name]:checked').forEach(function(e){
-                nominal += e.value+","
-            })
-            nominal = nominal.slice(0,-1);
+                nominal.push( e.value );
+            });
+            document.querySelectorAll('#example tbody tr').forEach(function(e){
+                levels.push( e.innerText.split('\t').join("_") );
+            });
+
+            // nominal = nominal.slice(0,-1);
 
             let dates = `${sd}/${sm}/${sy}-${ed}/${em}/${ey}`
 
           data.append('start-end-dates',dates);
           data.append('nominals',nominal);
-          data.append('levels',$("#example tbody tr").serialize());
+          data.append('levels', levels);
           data.append('name',$('input[name=name]').val());
+
             console.log(data)
 
             axios({
@@ -254,21 +255,36 @@ function checkbox($data = '', string $value = '', bool $checked = false, $extra 
                 },
                 url:"<?=base_url('book/to_yaml')?>",
                 data:data
-            }).then(data=>alert(data.data))
-            //
-            //$.ajax({
-            //    method:"post",
-            //    url:"<?//=base_url('book/to_yaml')?>//",
-            //    data: data,
-            //    contentType: "application/x-www-form-urlencoded;charset=ISO-8859-15",
-            //    success:function (resp) {
-            //        alert(resp);
-            //    }
-            //})
+            }).then(data=>{
+                console.log(data);
+                    alert(data.data.message);
+                }
+            )
+
+        });
+
+
+        $("#add").on("click",function(){
+
+            let lvl = $("#form-stacked-text1").val();
+            let pre = $("#form-stacked-text2").val();
+            let num = $("#form-stacked-text3").val();
+            let suf = $("#form-stacked-text4").val();
+
+            $("#example tbody").append(
+                `<tr>
+                    <td> ${lvl} </td>
+                    <td> ${pre} </td>
+                    <td> ${num} </td>
+                    <td> ${suf} </td>
+                    <td class="uk-text-center uk-flex uk-flex-around">
+                        <a class="uk-text-danger" title="რედაქტირება" href="" uk-icon="icon: copy"></a>
+                        <a class="uk-text-danger" title="წაშლა" href="" uk-icon="icon: trash"></a>
+                    </td>
+                </tr>`
+
+            )
         })
-
-
-
 
         // $(document).ready(function () {
             // $('#example').DataTable({
