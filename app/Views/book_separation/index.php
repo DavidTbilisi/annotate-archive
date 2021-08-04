@@ -43,15 +43,22 @@ function checkbox($data = '', string $value = '', bool $checked = false, $extra 
 
     </style>
 
-    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
-    <div class="uk-container uk-container-xlarge uk-section" id="book-separation">
+
+
+
+    <div class="uk-container uk-container-xlarge" id="book-separation">
+
+        <h1 class="uk-text-center">
+            <?= $page_title ?>
+            <span id="print" uk-icon="icon: print" class="uk-icon-button uk-margin-left"></span>
+        </h1>
 
         <div uk-grid>
             <div class="uk-width-3-5@m uk-padding">
                 <div class="uk-card">
                     <div class="uk-form-stacked">
 
-                        <span id="print" uk-icon="icon: print" class="uk-icon-button uk-margin-small-right"></span>
+
 
                         <div class="uk-margin">
                             <label class="uk-form-label" for="form-stacked-text">სახელი</label>
@@ -131,7 +138,7 @@ function checkbox($data = '', string $value = '', bool $checked = false, $extra 
 
                 </div>
             </div>
-            <div class="uk-width-2-5@m ">
+            <div class="uk-width-2-5@m uk-padding">
 <!--                <div class="buttons uk-flex uk-flex-around uk-padding">-->
 <!--                    <div class="uk-button uk-button-danger">გაუქმება</div>-->
 <!--                    <div class="uk-button uk-button-primary">შენახვა</div>-->
@@ -241,8 +248,8 @@ function checkbox($data = '', string $value = '', bool $checked = false, $extra 
 
             let dates = `${sd}/${sm}/${sy}-${ed}/${em}/${ey}`
 
-          data.append('start-end-dates',dates);
-          data.append('nominals',nominal);
+          data.append('dates',dates);
+          data.append('nominals',[nominal]);
           data.append('levels', levels);
           data.append('name',$('input[name=name]').val());
 

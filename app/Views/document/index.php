@@ -1,7 +1,10 @@
 <?= $this->extend('base_view') ?>
 <?= $this->section('content') ?>
 <div class="uk-container">
-    <h1 class="uk-text-center"><?= $page_title ?></h1>
+    <h1 class="uk-text-center">
+        <?= $page_title ?>
+        <span id="print" uk-icon="icon: print" class="uk-icon-button uk-margin-left"></span>
+    </h1>
 
     <div uk-grid>
         <div class="uk-width-3-5@m">
@@ -9,28 +12,54 @@
 
                 <div class="uk-margin">
                     <label for="doc_number">დოკუმენტის ნომერი</label>
-                    <input class="uk-input" type="text" id="doc_number">
+                    <input class="uk-input" type="text" name="doc_number" id="doc_number">
                 </div>
 
                 <div class="uk-margin">
                     <label for="doc_name">დოკუმენტის სახელი</label>
-                    <input class="uk-input" type="text" id="doc_name">
+                    <input class="uk-input" type="text" name="doc_name" id="doc_name">
                 </div>
 
 
-
             </form>
+
+            <div uk-grid class="uk-flex uk-flex-between">
+                <div class="nominals">
+
+                    <div class="nominal" style="margin-top: 50px">
+                        <h3 class="uk-text-center">ნომინალები</h3>
+                        <?php foreach ( $nominals as $checkbox): ?>
+                            <div class="uk-margin">
+                                <label><input class="uk-checkbox" name="nominals[]" type="checkbox"> <?=$checkbox->title?></label> <br>
+                            </div>
+                        <?php endforeach; ?>
+                    </div>
+                </div>
+                <div class="institutions">
+
+                    <div class="institution" style="margin-top: 50px">
+                        <h3 class="uk-text-center">დაწესებულება</h3>
+                        <?php foreach ( $institutions as $checkbox): ?>
+                            <div class="uk-margin">
+                                <label><input class="uk-checkbox" name="institutions[]" type="checkbox"> <?=$checkbox->title?></label> <br>
+                            </div>
+                        <?php endforeach; ?>
+                    </div>
+                </div>
+
+
+            </div>
         </div>
 
         <div class="uk-width-2-5@m">
 
             <div class="uk-flex uk-flex-between">
                 <div>
-                    <label for="start_day">საწყისი დღე</label>
+                    <label for="start_day">დღე</label>
                     <input name="start_day" class="uk-input" id="start_day" type="number" min="1" max="31">
                 </div>
                 <div>
-                    <label for="start_month">საწყისი თვე</label>
+                    <label for="start_month">თვე</label>
                     <select name="start_month" class="uk-select" id="start_month">
                         <option value="">აირჩიე თვე</option>
                         <option value="1">იანვარი</option>
@@ -48,60 +77,105 @@
                     </select>
                 </div>
                 <div>
-                    <label for="start_year">საწყისი წელი</label>
+                    <label for="start_year">წელი</label>
                     <input name="start_year" class="uk-input" id="start_year" type="number" min="1000" max="9999">
                 </div>
             </div>
 
-            <div class="uk-margin">
-                <label for="object">სუბიექტი / ობიექტი</label>
-                <input class="uk-input" type="text" id="object" name="object">
+            <div class="connections">
+
+                <div class="connection" style="margin-top: 50px">
+                    <h3 class="">კავშირები</h3>
+                    <?php foreach ( $connections as $checkbox): ?>
+                        <div class="uk-margin">
+                            <label><input class="uk-checkbox" name="connections[]" type="checkbox"> <?=$checkbox->title?></label><br>
+
+                            <div class="uk-inline" uk-tooltip="title: სუბიექტი/ობიექტი; pos: top-right; delay: 500" >
+                                <span class="uk-form-icon uk-form-icon-flip" uk-icon="icon: user"></span>
+                                <input class="uk-input" type="text" name="subject[]">
+                            </div>
+
+                        </div>
+                    <?php endforeach; ?>
+                </div>
             </div>
         </div>
     </div>
 
 
-    <div uk-grid>
-        <div class="nominals">
 
-                <div class="nominals" style="margin-top: 50px">
-                    <h3 class="uk-text-center">ნომინალები</h3>
-                    <?php foreach ( $nominals as $checkbox): ?>
-                        <div class="uk-margin">
-                            <label><input class="uk-checkbox" type="checkbox"> <?=$checkbox->title?></label> <br>
-                        </div>
-                    <?php endforeach; ?>
-                </div>
-        </div>
-        <div class="institutions">
-
-                <div class="nominals" style="margin-top: 50px">
-                    <h3 class="uk-text-center">დაწესებულება</h3>
-                    <?php foreach ( $institutions as $checkbox): ?>
-                        <div class="uk-margin">
-                            <label><input class="uk-checkbox" type="checkbox"> <?=$checkbox->title?></label> <br>
-                        </div>
-                    <?php endforeach; ?>
-                </div>
-        </div>
-        <div class="connections">
-
-                <div class="nominals" style="margin-top: 50px">
-                    <h3 class="uk-text-center">კავშირები</h3>
-                    <?php foreach ( $connections as $checkbox): ?>
-                        <div class="uk-margin">
-                            <label><input class="uk-checkbox" type="checkbox"> <?=$checkbox->title?></label> <br>
-                        </div>
-                    <?php endforeach; ?>
-                </div>
-        </div>
-
-    </div>
 
     <div class="uk-text-right">
         <button class="uk-button uk-button-danger">გაუქმება</button>
         <button class="uk-button uk-button-primary ">შენახვა</button>
     </div>
 </div>
+
+
+<script>
+
+
+
+
+    let print = $('#print');
+
+
+    print.on("click", function () {
+        var data = new FormData();
+
+        function val(selector) {
+            return document.querySelector(selector).value
+        }
+
+        let sd = val('[name^=start_day]');
+        let sm = val('[name^=start_month]');
+        let sy = val('[name^=start_year]');
+
+
+        let nom = [], inst = [], conn = [];
+
+        document.querySelectorAll('input[name^=nom]:checked').forEach(function(e){
+            nom.push( e.nextSibling.data );
+        });
+
+        document.querySelectorAll('input[name^=inst]:checked').forEach(function(e){
+            inst.push( e.nextSibling.data );
+        });
+
+        document.querySelectorAll('input[name^=conn]:checked').forEach(function(e){
+            let subject = e.parentElement.parentElement.querySelector("[name^=sub]").value;
+            conn.push( `${e.nextSibling.data} - ${subject}` );
+        });
+
+        // nominal = nominal.slice(0,-1);
+
+        let dates = `${sd}/${sm}/${sy}`;
+
+        data.append('dates',dates);
+        data.append('nominals',nom);
+        data.append('institutions', inst);
+        data.append('connection_types', conn);
+        data.append('doc_numb', $('#doc_number').val());
+        data.append('name',$('#doc_name').val());
+
+        console.log(data);
+
+        axios({
+            method:"post",
+            headers:{
+                'Content-Type':'multipart/form-data'
+            },
+            url:"<?=base_url('book/to_yaml')?>",
+            data:data
+        }).then(data=>{
+                console.log(data);
+                alert(data.data.message);
+                open('<?=base_url("book/test")?>');
+            }
+        )
+
+    });
+
+</script>
     <?= $this->endSection() ?>
 

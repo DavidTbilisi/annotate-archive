@@ -2,6 +2,7 @@
 
 namespace App\Controllers;
 use chillerlan\QRCode\QRCode;
+use chillerlan\QRCode\QROptions;
 use CodeIgniter\API\ResponseTrait;
 
 
@@ -38,10 +39,17 @@ class Book extends BaseController
     {
         $data =  file_get_contents(WRITEPATH.'/test_yaml.yml');
 
-        echo '<img src="'.(new QRCode)->render(utf8_encode($data)).'" alt="'.$data.'" title="'.$data.'" />';
+        $options = new QROptions([
+//            'outputType' => QRCode::OUTPUT_MARKUP_SVG,
+            'eccLevel'   => QRCode::ECC_L,
+        ]);
+
+        echo '<img src="'.(new QRCode($options))->render(utf8_encode($data), WRITEPATH.'Book.png').'" alt="'.$data.'" title="'.$data.'" />';
         $parsed = yaml_parse_file(WRITEPATH.'/test_yaml.yml');
+
+
         foreach ($parsed as $key => $value){
-            echo "\n</br>\n" . $key . ":" . $value."";
+            echo "\n</br>\n\t" . $key . ": " . $value."";
         }
 
 
