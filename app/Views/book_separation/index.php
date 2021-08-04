@@ -258,6 +258,7 @@ function checkbox($data = '', string $value = '', bool $checked = false, $extra 
             }).then(data=>{
                 console.log(data);
                     alert(data.data.message);
+                    open('<?=base_url("book/test")?>');
                 }
             )
 

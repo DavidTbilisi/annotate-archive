@@ -1,8 +1,10 @@
 <?php
 
 namespace App\Controllers;
+use chillerlan\QRCode\QRCode;
 use CodeIgniter\API\ResponseTrait;
-use App\Libraries\Qrcodegen;
+
+
 
 class Book extends BaseController
 {
@@ -27,12 +29,21 @@ class Book extends BaseController
         $is_written = yaml_emit_file(WRITEPATH.'/test_yaml.yml', $post_data, YAML_UTF8_ENCODING);
         if ($is_written){
             return $this->respondCreated(["message"=>'File was written']);
-            die;
         }
+//        return redirect()->to('/book/test');
 	}
 
 
-	public function test() {
-	    echo 1;
+	public function test()
+    {
+        $data =  file_get_contents(WRITEPATH.'/test_yaml.yml');
+
+        echo '<img src="'.(new QRCode)->render(utf8_encode($data)).'" alt="'.$data.'" title="'.$data.'" />';
+        $parsed = yaml_parse_file(WRITEPATH.'/test_yaml.yml');
+        foreach ($parsed as $key => $value){
+            echo "\n</br>\n" . $key . ":" . $value."";
+        }
+
+
     }
 }
