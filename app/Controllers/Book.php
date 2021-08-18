@@ -44,14 +44,17 @@ class Book extends BaseController
             'eccLevel'   => QRCode::ECC_L,
         ]);
 
-        echo '<img src="'.(new QRCode($options))->render(utf8_encode($data), WRITEPATH.'Book.png').'" alt="'.$data.'" title="'.$data.'" />';
+        $qrcode = new QRCode($options);
+//        echo '<img src="'.$qrcode->render($data, WRITEPATH.'Book.png').'" alt="'.$data.'" title="'.$data.'" />';
         $parsed = yaml_parse_file(WRITEPATH.'/test_yaml.yml');
+        $qrcode->render($data, 'images/Book.png');
 
-
-        foreach ($parsed as $key => $value){
-            echo "\n</br>\n\t" . $key . ": " . $value."";
-        }
-
-
+//        foreach ($parsed as $key => $value){
+//            echo "\n</br>\n\t" . $key . ": " . $value."";
+//        }
+        return view('book_separation/generated',[ 'image' => $data, "data"=>$parsed]);
     }
+
+
+
 }
