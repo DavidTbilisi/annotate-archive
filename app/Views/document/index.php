@@ -104,11 +104,6 @@
 
 
 
-
-    <div class="uk-text-right">
-        <button class="uk-button uk-button-danger">გაუქმება</button>
-        <button class="uk-button uk-button-primary ">შენახვა</button>
-    </div>
 </div>
 
 
@@ -165,12 +160,12 @@
             headers:{
                 'Content-Type':'multipart/form-data'
             },
-            url:"<?=base_url('book/to_yaml')?>",
+            url:"<?=base_url('document/qrcode')?>",
             data:data
         }).then(data=>{
                 console.log(data);
                 alert(data.data.message);
-                open('<?=base_url("book/test")?>');
+                open('<?=base_url("document/show")?>');
             }
         )
 

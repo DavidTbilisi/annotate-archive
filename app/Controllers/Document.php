@@ -2,9 +2,15 @@
 
 namespace App\Controllers;
 
+use chillerlan\QRCode\QRCode;
+use chillerlan\QRCode\QROptions;
+use CodeIgniter\API\ResponseTrait;
+
 class Document extends BaseController
 {
-	public function index()
+    use ResponseTrait;
+
+    public function index()
 	{
 		$data = [
 		    'nominals' => $nominals = $this->db->table('nominals')->get()->getResult(),
@@ -15,4 +21,36 @@ class Document extends BaseController
 
 		return view('document/index', $data);
 	}
+
+
+    public function qrcode()
+    {
+
+        $post_data = $this->request->getPost();
+
+        $is_written = yaml_emit_file(WRITEPATH.'/qrcode_document.yml', $post_data, YAML_UTF8_ENCODING);
+        if ($is_written){
+            return $this->respondCreated(["message"=>'File was written']);
+        } return $this->respondNoContent(["message"=>'File was not written']);
+
+    }
+
+
+    public function show(){
+        $data =  file_get_contents(WRITEPATH.'/qrcode_document.yml');
+
+        $options = new QROptions([
+//            'outputType' => QRCode::OUTPUT_MARKUP_SVG,
+            'eccLevel'   => QRCode::ECC_L,
+        ]);
+
+        $qrcode = new QRCode($options);
+        $parsed = yaml_parse_file(WRITEPATH.'/qrcode_document.yml');
+        $qrcode->render($data, 'images/Document.png');
+//
+//        foreach ($parsed as $key => $value){
+//            echo "\n</br>\n\t" . $key . ": " . $value."";
+//        }
+        return view('document/generated',[ 'image' => $data, "data"=>$parsed]);
+    }
 }
