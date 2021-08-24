@@ -44,7 +44,7 @@
                 <a href="#"  uk-icon="icon: user"></a>
                 <div class="uk-navbar-dropdown">
                     <ul class="uk-nav uk-navbar-dropdown-nav">
-                        <li class="uk-active"><a href="#">Active</a></li>
+                        <li class="uk-active"><a href="<?=base_url('users')?>">Login</a></li>
                         <li><a href="#">Item</a></li>
                         <li class="uk-nav-header">Header</li>
                         <li><a href="#">Item</a></li>

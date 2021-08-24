@@ -87,7 +87,8 @@ class UsersController extends BaseController
             
             // Check email
             $user = $this->usersModel->where('email', $this->request->getPost('email'))->first();
-            
+
+
             if (!$user) {
                 session()->setFlashdata('error', 'Wrong email. User not found.');
                 return redirect()->back()->withInput();
@@ -102,7 +103,9 @@ class UsersController extends BaseController
             $pass = $this->request->getPost('password');
 
             if (!password_verify($pass, $user->password)) {
-
+//                d(password_hash($pass, PASSWORD_DEFAULT));
+//                d($user->password);
+//                dd(password_verify($pass, $user->password));
                 session()->setFlashdata('error', 'Wrong password!');
                 return redirect()->back()->withInput();
             } else {

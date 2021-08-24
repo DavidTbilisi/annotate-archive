@@ -26,7 +26,8 @@ class NoAuthFilter implements FilterInterface
 	public function before(RequestInterface $request, $arguments = null)
 	{
         if (!service('userAuth')->check()) {
-            return redirect()->to(base_url('users/login'));
+//            throw \CodeIgniter\Exceptions\PageNotFoundException::forPageNotFound();
+            return redirect()->to(base_url('users'));
         }
 	}
 

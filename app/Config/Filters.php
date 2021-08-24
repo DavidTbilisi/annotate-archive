@@ -60,5 +60,7 @@ class Filters extends BaseConfig
 	 *
 	 * @var array
 	 */
-	public $filters = [];
+	public $filters = [
+	    'NoAuthFilter' => ['before' => ['book','document','config']]
+    ];
 }
