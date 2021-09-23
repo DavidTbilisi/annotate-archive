@@ -60,7 +60,7 @@ class UsersController extends BaseController
             'activated' => 1
         ]);
         
-        $this->session->setFlashdata('success', 'Your accout is activated successfully');
+        $this->session->setFlashdata('success', 'Your account is activated successfully');
         
         return redirect()->to(base_url('users/login'));
         

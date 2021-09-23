@@ -7,7 +7,12 @@ $parsed =  file_get_contents(WRITEPATH.'/test_yaml.yml');
 
 <h1 class="uk-text-center"><?=$page_title?></h1>
 <div class="uk-container">
-   <h1 class="uk-text-center uk-text-danger">STOP</h1>
+   <h1 class="uk-text-center uk-text-danger">
+       STOP
+       <?php echo '<img src="'.(new chillerlan\QRCode\QRCode)->render("STOP").'" alt="STOP" />'; ?>
+   </h1>
+
+
 </div>
 
 
