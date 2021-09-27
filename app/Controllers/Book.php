@@ -27,7 +27,7 @@ class Book extends BaseController
 
         $post_data = $this->request->getPost();
 
-        $is_written = yaml_emit_file(WRITEPATH.'/test_yaml.yml', $post_data, YAML_UTF8_ENCODING);
+        $is_written = yaml_emit_file(WRITEPATH.'/book.yml', $post_data, YAML_UTF8_ENCODING);
         if ($is_written){
             return $this->respondCreated(["message"=>'File was written']);
         }
@@ -37,7 +37,7 @@ class Book extends BaseController
 
 	public function test()
     {
-        $data =  file_get_contents(WRITEPATH.'/test_yaml.yml');
+        $data =  file_get_contents(WRITEPATH.'/book.yml');
 
         $options = new QROptions([
 //            'outputType' => QRCode::OUTPUT_MARKUP_SVG,
@@ -45,13 +45,9 @@ class Book extends BaseController
         ]);
 
         $qrcode = new QRCode($options);
-//        echo '<img src="'.$qrcode->render($data, WRITEPATH.'Book.png').'" alt="'.$data.'" title="'.$data.'" />';
-        $parsed = yaml_parse_file(WRITEPATH.'/test_yaml.yml');
+        $parsed = yaml_parse_file(WRITEPATH.'/book.yml');
         $qrcode->render($data, 'images/Book.png');
 
-//        foreach ($parsed as $key => $value){
-//            echo "\n</br>\n\t" . $key . ": " . $value."";
-//        }
         return view('book_separation/generated',[ 'image' => $data, "data"=>$parsed]);
     }
 
