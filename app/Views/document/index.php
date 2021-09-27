@@ -28,22 +28,29 @@
 
                     <div class="nominal" style="margin-top: 50px">
                         <h3 class="uk-text-center">ნომინალები</h3>
+                        <select name="nominals" id="" class="uk-select">
+                            <option value="">აირჩიეთ ნომინალი</option>
                         <?php foreach ( $nominals as $checkbox): ?>
-                            <div class="uk-margin">
-                                <label><input class="uk-checkbox" name="nominals[]" type="checkbox"> <?=$checkbox->title?></label> <br>
-                            </div>
+                           <option value="<?=$checkbox->title?>"><?=$checkbox->title?></option>
                         <?php endforeach; ?>
+                        </select>
                     </div>
                 </div>
                 <div class="institutions">
 
                     <div class="institution" style="margin-top: 50px">
-                        <h3 class="uk-text-center">დაწესებულება</h3>
+                        <h3 class="uk-text-center">ავტორი</h3>
+                        <div class="uk-margin">
+
+                        <select name="institutions" id="" class="uk-select">
+                            <option value="">აირჩიეთ დაწესებულება</option>
                         <?php foreach ( $institutions as $checkbox): ?>
-                            <div class="uk-margin">
-                                <label><input class="uk-checkbox" name="institutions[]" type="checkbox"> <?=$checkbox->title?></label> <br>
-                            </div>
+                           <option value="<?=$checkbox->title?>"><?=$checkbox->title?></option>
                         <?php endforeach; ?>
+                        </select>
+
+                        </div>
+
                     </div>
                 </div>
 
@@ -127,15 +134,9 @@
         let sy = val('[name^=start_year]');
 
 
-        let nom = [], inst = [], conn = [];
-
-        document.querySelectorAll('input[name^=nom]:checked').forEach(function(e){
-            nom.push( e.nextSibling.data );
-        });
-
-        document.querySelectorAll('input[name^=inst]:checked').forEach(function(e){
-            inst.push( e.nextSibling.data );
-        });
+        let nom = document.querySelector("[name^=nom]").value, 
+            inst = document.querySelector("[name^=inst]").value, 
+            conn = [];
 
         document.querySelectorAll('input[name^=conn]:checked').forEach(function(e){
             let subject = e.parentElement.parentElement.querySelector("[name^=sub]").value;
@@ -148,10 +149,10 @@
 
         data.append('dates',dates);
         data.append('nominals',nom);
-        data.append('institutions', inst);
-        data.append('connection_types', conn);
+        data.append('author', inst);
         data.append('doc_numb', $('#doc_number').val());
-        data.append('name',$('#doc_name').val());
+        data.append('title',$('#doc_name').val());
+        data.append('connection_types', conn);
 
         console.log(data);
 
