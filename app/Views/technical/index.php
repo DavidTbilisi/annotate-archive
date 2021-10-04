@@ -1,7 +1,7 @@
 <?= $this->extend('base_view') ?>
 <?= $this->section('content') ?>
 <?php
-$parsed =  file_get_contents(WRITEPATH.'/test_yaml.yml');
+$parsed =  file_get_contents(WRITEPATH.'/tech.yml');
 //dd($parsed);
 ?>
 
@@ -9,7 +9,7 @@ $parsed =  file_get_contents(WRITEPATH.'/test_yaml.yml');
 <div class="uk-container">
    <h1 class="uk-text-center uk-text-danger">
        STOP
-       <?php echo '<img src="'.(new chillerlan\QRCode\QRCode)->render("STOP").'" alt="STOP" />'; ?>
+       <?php echo '<img src="'.(new chillerlan\QRCode\QRCode)->render($parsed).'" alt="STOP" />'; ?>
    </h1>
 
 

@@ -172,6 +172,7 @@ function checkbox($data = '', string $value = '', bool $checked = false, $extra 
             data.append('nominals', [nominal]);
             data.append('name', val('input[name=name]'));
             data.append('title', val('input[name=title]'));
+            data.append('type', "bs");
 
             axios({
                 method: "post",

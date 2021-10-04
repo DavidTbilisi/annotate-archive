@@ -28,7 +28,7 @@ class Document extends BaseController
 
         $post_data = $this->request->getPost();
 
-        $is_written = yaml_emit_file(WRITEPATH.'/qrcode_document.yml', $post_data, YAML_UTF8_ENCODING);
+        $is_written = yaml_emit_file(WRITEPATH.'/document.yml', $post_data, YAML_UTF8_ENCODING);
         if ($is_written){
             return $this->respondCreated(["message"=>'File was written']);
         } return $this->respondNoContent(["message"=>'File was not written']);
@@ -37,7 +37,7 @@ class Document extends BaseController
 
 
     public function show(){
-        $data =  file_get_contents(WRITEPATH.'/qrcode_document.yml');
+        $data =  file_get_contents(WRITEPATH.'/document.yml');
 
         $options = new QROptions([
 //            'outputType' => QRCode::OUTPUT_MARKUP_SVG,
@@ -45,7 +45,7 @@ class Document extends BaseController
         ]);
 
         $qrcode = new QRCode($options);
-        $parsed = yaml_parse_file(WRITEPATH.'/qrcode_document.yml');
+        $parsed = yaml_parse_file(WRITEPATH.'/document.yml');
         $qrcode->render($data, 'images/Document.png');
 //
 //        foreach ($parsed as $key => $value){

@@ -153,6 +153,7 @@
         data.append('doc_numb', $('#doc_number').val());
         data.append('title',$('#doc_name').val());
         data.append('connection_types', conn);
+        data.append('type', 'ds');
 
         console.log(data);
 

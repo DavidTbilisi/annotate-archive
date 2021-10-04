@@ -16,6 +16,8 @@ class Technical extends BaseController
 		$data = [
 			'page_title' => 'Technical Separation Sheet',
 		];
+
+        yaml_emit_file(WRITEPATH.'/tech.yml', ["type"=>'ts', "name"=>'stop'], YAML_UTF8_ENCODING);
 		return view('technical/index', $data);
 	}
 
